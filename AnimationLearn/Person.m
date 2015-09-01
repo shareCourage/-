@@ -9,6 +9,11 @@
 #import "Person.h"
 
 @implementation Person
+
+@synthesize foo;
+@synthesize name = myName;
+//@dynamic name;
+
 - (id)copyWithZone:(NSZone *)zone
 {
     Person *person = [[[self class] allocWithZone:zone] init];
@@ -19,4 +24,17 @@
 {
     return [[self alloc] init];
 }
+
+
+- (NSString *)name
+{
+    return myName;
+}
+
+
+- (NSString *)foo
+{
+    return foo;
+}
+
 @end

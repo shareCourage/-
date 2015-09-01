@@ -5,12 +5,14 @@
 //  Created by Kowloon on 15/6/2.
 //  Copyright (c) 2015年 Paul. All rights reserved.
 //
-
+#define KUDID @"MyUniqueUDID"
 #import "NSURLSessionController.h"
 #import "PHNetwork.h"
 #import "Person.h"
-//#import <GMOpenSDK/GMOpenKit.h>
-@interface NSURLSessionController ()
+#import "AFNetworking.h"
+#import "OpenUDID.h"
+#import "SFHFKeychainUtils.h"
+@interface NSURLSessionController ()<NSURLConnectionDelegate,NSURLConnectionDataDelegate>
 @property (nonatomic, strong) NSString *strongString;
 @property (nonatomic, copy) NSString *copyedString;
 
@@ -34,7 +36,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewDidLoad");
     self.title = @"Request";
 
 }
@@ -82,16 +83,48 @@
         }];
     }
 }
-
-- (void)awakeFromNib
-{
-    NSLog(@"awakeFromNib");
+- (NSString *)getUniqueIdentifier{
+    
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSString *uniqueIdentifier = [SFHFKeychainUtils getPasswordForUsername:KUDID
+                                                            andServiceName:bundleIdentifier
+                                                                     error:nil];
+    if (!uniqueIdentifier) {
+        NSString *udid = [OpenUDID value];
+        
+        BOOL end = [SFHFKeychainUtils storeUsername:KUDID
+                                        andPassword:udid
+                                     forServiceName:bundleIdentifier
+                                     updateExisting:YES
+                                              error:NULL];
+        if (end) {
+            NSString *tmpStr = [SFHFKeychainUtils getPasswordForUsername:KUDID
+                                                          andServiceName:bundleIdentifier
+                                                                   error:nil];
+            return tmpStr;
+        }
+        else{
+            return udid;
+        }
+    }
+    
+    return uniqueIdentifier;
 }
+
 - (IBAction)requestEvent:(id)sender {
 #if 0
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://baidu.com"]];
+    
+    NSString *testUrl = @"http://111.13.51.41:1240";
+    NSURLRequest *testRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:testUrl]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidukas.com"]];
+    
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (response) NSLog(@"response->~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%@",response);
+        if (error)  NSLog(@"error ->################################## %@",error);
+        if (data) NSLog(@"data -> =====================================%@",data);
         NSLog(@"sleep 5s");
         NSLog(@"%@",[NSThread currentThread]);
         sleep(5);
@@ -101,6 +134,7 @@
     [task resume];
 #endif
     
+#if 0
     __weak typeof(self) weakSelf = self;
     [PHNetwork requestWithblock:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -108,7 +142,8 @@
             [strongSelf setupScrollViewImages];
         });
     }];
-    
+#endif
+#if 0
     [self test];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
@@ -127,9 +162,38 @@
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         NSLog(@"updateUi");  
     });
+#endif
     
+    NSLog(@"keyChain->%@",[self getUniqueIdentifier]);
+    //fd506cee225e32699b813b9c94a1bdf3cd4f110c
+    //PauliPhone:ebd34d0085fb40719f5b292a4e8752971cce0e69
+    [self stringReplacement];
 }
 
+- (void)stringReplacement
+{
+    NSString *str = @"Message':'50元现金券[50.00元现金券]<br />有效期 5 天";
+    str = [str stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
+    NSLog(@"str->%@",str);
+    
+    
+    NSString *string = @"device into fence at 14:12";
+    string = [string stringByReplacingOccurrencesOfString:@" " withString:@","];
+    NSArray *array = [self seprateString:string characterSet:@","];
+    for (id obj in array) {
+        NSLog(@"%@",obj);
+    }
+    
+}
+- (NSArray *)seprateString:(NSString *)string characterSet:(NSString *)set
+{
+    NSString *stringTransforToUTF = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSCharacterSet *cSet = [NSCharacterSet characterSetWithCharactersInString:set];
+    NSArray *arr = [stringTransforToUTF componentsSeparatedByCharactersInSet:cSet];
+    //    NSString *resultString = [arr firstObject];
+    //    NSLog(@"resultString  --->>>  %@",resultString);
+    return arr;
+}
 @end
 
 

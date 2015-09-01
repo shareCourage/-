@@ -26,13 +26,13 @@
 + (void)requestWithblock:(void (^)(void))block
 {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://baidu.com"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSLog(@"request sleep 5s");
         NSLog(@"%@",[NSThread currentThread]);
         sleep(1);
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"string->%@",string);
+        NSLog(@"string-------------->%@",string);
         if (block) {
             block();
         }

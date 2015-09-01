@@ -31,6 +31,8 @@
 
 @property(nonatomic, weak)UIButton *myButton;
 @property(nonatomic, strong)NSMutableArray *shapLayers;
+
+@property (nonatomic, copy)NSString *name;
 - (IBAction)cubeVC:(id)sender;
 
 @end
@@ -161,6 +163,13 @@
     alphaOne = Alpha;
     alphaTwo = Alpha;
     [self.displayLinkOne addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    NSString *string = @"hahahhahah";
+    _name = string;
+    string = @"aaaaaa";
+    NSString *aa = @"123";
+    NSString *bb = @"123";
+    NSLog(@"name -> %@, string -> %@， %p,%p",_name, string, &aa , &bb);
 }
 
 - (void)buttonImplementation

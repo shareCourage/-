@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface Person : NSObject<NSCopying>
-
+{
+//    NSString *_foo;
+}
+@property (nonatomic, copy)NSString *foo;
 @property(nonatomic, strong)NSString *name;
 @property(nonatomic, assign)int age;
 + (instancetype)person;

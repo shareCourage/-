@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5C01435E-D644-4CC3-88B9-11D5FF6E8F62</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8EFF53C634F068A91BFA39F4F636F5DB864115EC</key>
+		<string>https://github.com/shareCourage/-.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AnimationLearn.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8EFF53C634F068A91BFA39F4F636F5DB864115EC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/shareCourage/-.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8EFF53C634F068A91BFA39F4F636F5DB864115EC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8EFF53C634F068A91BFA39F4F636F5DB864115EC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AnimationLearn</string>
+		</dict>
+	</array>
+</dict>
+</plist>

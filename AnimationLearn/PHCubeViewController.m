@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
 //    self.view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.3f];
 //    self.container.backgroundColor = [UIColor whiteColor];
     UIView *face = [self.numberViews firstObject];
