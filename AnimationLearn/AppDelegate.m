@@ -19,12 +19,14 @@
     if (status == GMOpenPermissionStatusOfSuccess) {
         NSLog(@"appid验证成功");
     }
+    
 }
 #endif
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    GMOpenManager *open = [GMOpenManager manager];
 //    [open validateWithKey:@"23" delegate:self];
+    NSLog(@"git init -bare");
     return YES;
 }
 
