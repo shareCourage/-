@@ -27,6 +27,7 @@
 //    GMOpenManager *open = [GMOpenManager manager];
 //    [open validateWithKey:@"23" delegate:self];
     NSLog(@"git init -bare");
+    NSLog(@"注释。。。。。");
     return YES;
 }
 
